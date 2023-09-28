@@ -165,6 +165,7 @@ module.exports = grammar({
             $.diagram_pie,
             $.diagram_flow,
             $.diagram_er,
+            $.diagram_timeline,
         ),
 
         directive: $ => seq(
@@ -733,6 +734,35 @@ module.exports = grammar({
         ),
 
         er_attribute_comment: $ => $._er_word,
+
+        // Timeline
+        diagram_timeline: $ => seq(
+            repeat(choice($.directive, $._newline)),
+            kwd("timeline"), $._newline,
+            optional($.timeline_title),
+            repeat(choice($._timeline_stmt, $._newline)),
+        ),
+
+        _timeline_stmt: $ => choice(
+            $.timeline_stmt_data,
+            $.directive,
+        ),
+
+        _timeline_text: $ => /[^\n]+/,
+
+        timeline_title: $ => seq(
+            kwd("title"), $._timeline_text, $._newline,
+        ),
+
+        _timeline_data_text: $ => /[^\n:]+/,
+
+        timeline_stmt_data: $ => seq(
+            alias($._timeline_data_text, $.timeline_time_period),
+            repeat1(seq(
+                ":", alias($._timeline_data_text, $.timeline_event),
+            )),
+            $._newline,
+        ),
 
         ... tokensFunc
     }

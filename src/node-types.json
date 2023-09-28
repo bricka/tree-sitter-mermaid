@@ -833,6 +833,29 @@
     }
   },
   {
+    "type": "diagram_timeline",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": false,
+      "types": [
+        {
+          "type": "directive",
+          "named": true
+        },
+        {
+          "type": "timeline_stmt_data",
+          "named": true
+        },
+        {
+          "type": "timeline_title",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
     "type": "direction_bt",
     "named": true,
     "fields": {}
@@ -2315,6 +2338,10 @@
         {
           "type": "diagram_state",
           "named": true
+        },
+        {
+          "type": "diagram_timeline",
+          "named": true
         }
       ]
     }
@@ -2541,6 +2568,30 @@
         }
       ]
     }
+  },
+  {
+    "type": "timeline_stmt_data",
+    "named": true,
+    "fields": {},
+    "children": {
+      "multiple": true,
+      "required": true,
+      "types": [
+        {
+          "type": "timeline_event",
+          "named": true
+        },
+        {
+          "type": "timeline_time_period",
+          "named": true
+        }
+      ]
+    }
+  },
+  {
+    "type": "timeline_title",
+    "named": true,
+    "fields": {}
   },
   {
     "type": "title",
@@ -3034,6 +3085,18 @@
   {
     "type": "td",
     "named": false
+  },
+  {
+    "type": "timeline",
+    "named": false
+  },
+  {
+    "type": "timeline_event",
+    "named": true
+  },
+  {
+    "type": "timeline_time_period",
+    "named": true
   },
   {
     "type": "title",
